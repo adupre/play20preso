@@ -1,0 +1,26 @@
+@()
+
+@main("Base page") {
+	<form action="javascript:;">
+		<input type="text" id="in"> <input type="submit" /> <span id="out"></span>
+		
+	</form>
+	<ul id="history"></ul>
+    
+	<script language="javascript">
+			$('form').submit(function() {
+				var q = $('#in').val();
+				routes.controllers.Calculator.convert(q).ajax({
+					success: function(data) {
+						$('<li></li>')
+							.text(q + " = " + data.results)
+							.hide()
+							.prependTo($('#history'))
+							.fadeIn('slow')
+						$('#out').hide().text(data.results).fadeIn('slow');
+					}
+				});
+				return false;
+			});
+	</script>
+}

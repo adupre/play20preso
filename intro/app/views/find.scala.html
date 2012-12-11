@@ -1,0 +1,25 @@
+@()
+
+@main("Find page") {
+	<form action="javascript:;">
+		What: <input type="text" id="what"> <br/>
+		Where: <input type="text" id="where"> <br/>
+		<input type="submit" />
+	</form>
+	<p></p>
+	<div id="results"></div>
+
+	<script language="javascript">
+			$('form').submit(function() {
+				routes.controllers.Locator.locate(
+						$('#what').val(),
+						$('#where').val()
+					).ajax({
+					success: function(data) {
+						$('#results').hide().html(data).fadeIn('slow');
+					}
+				});
+				return false;
+			});
+	</script>
+}

@@ -1,0 +1,15 @@
+@(locations: Seq[models.Location])
+
+@for(location <- locations) {
+	<li>
+		<img style="height: 14px; width: 14px" src="@location.icon">
+		
+		@if(location.open) {
+			<strong class="open">Open</strong>
+		}
+		@location.name
+		<i class="vincinity">@location.vincinity</i>
+	</li>
+}
+
+
